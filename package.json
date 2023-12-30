@@ -1,0 +1,19 @@
+{
+  "name": "simple-cache",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest --config ./vitest.config.ts",
+    "coverage": "vitest run --config ./vitest.config.ts --coverage",
+    "dev": "tsc && node ./dist/example.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@vitest/coverage-v8": "^1.0.4",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}
