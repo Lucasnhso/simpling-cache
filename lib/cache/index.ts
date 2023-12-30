@@ -1,3 +1,5 @@
+import { InvalidExpirationError } from "../utils/errors/invalid-expiration-error.js";
+import { InvalidKeyError } from "../utils/errors/invalid-key-error.js";
 import { createSchedule } from "../utils/schedule.js";
 
 export interface Data {
@@ -18,6 +20,9 @@ export default class Cache {
     return result;
   }
   insertOne(key: string, value: any, expiresIn?: number) {
+    if (key.trim() === '') {
+      throw new InvalidKeyError();
+    }
     this.data[key] = value;
     if(value && expiresIn) {
       this.setExpiration(key, expiresIn);
@@ -35,6 +40,9 @@ export default class Cache {
     delete this.data[key];
   }
   setExpiration(key: string, expiresIn: number) {
+    if (expiresIn < 0){
+      throw new InvalidExpirationError();
+    } 
     createSchedule(expiresIn, () => this.expire(key));
   }
 }
