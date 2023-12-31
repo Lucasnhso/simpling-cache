@@ -129,7 +129,7 @@ describe('Cache - Unit Tests', () => {
     expect(exec).toThrowError(InvalidKeyError);
   })
 
-  it.only('Should throw a invalid expiration error expiration if expiration is negative', () => {
+  it('Should throw a invalid expiration error expiration if expiration is negative', () => {
     const exec = () => cache.insertOne(fixtureKey, fixtureValue, -5);
     expect(exec).toThrowError(InvalidExpirationError);
   })
