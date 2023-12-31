@@ -1,6 +1,7 @@
 import { expect, it, describe, vi, afterEach } from 'vitest';
 import Cache from '../../../../lib/cache';
 import * as scheduleUtil from '../../../../lib/utils/schedule';
+import { InvalidExpirationError, InvalidKeyError } from '../../../../lib/utils/errors';
 
 describe('Cache - Unit Tests', () => {
   afterEach(() => {
@@ -121,5 +122,15 @@ describe('Cache - Unit Tests', () => {
     cache.setExpiration(fixtureKey, expiration)
 
     expect(spy).toHaveBeenCalledOnce()
+  })
+
+  it('Should throw a invalid key error if key is a empty string', () => {
+    const exec = () => cache.insertOne('', fixtureValue);
+    expect(exec).toThrowError(InvalidKeyError);
+  })
+
+  it.only('Should throw a invalid expiration error expiration if expiration is negative', () => {
+    const exec = () => cache.insertOne(fixtureKey, fixtureValue, -5);
+    expect(exec).toThrowError(InvalidExpirationError);
   })
 })
