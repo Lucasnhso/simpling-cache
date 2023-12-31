@@ -3,6 +3,7 @@ import { Chance } from 'chance';
 import Cache from '../../../../lib/cache';
 import * as scheduleUtil from '../../../../lib/utils/schedule';
 import { InvalidExpirationError, InvalidKeyError } from '../../../../lib/utils/errors';
+import { createCacheItem, createCacheItems } from '../utils/fixtures/cache';
 
 describe('Cache - Unit Tests', () => {
   afterEach(() => {
@@ -19,13 +20,9 @@ describe('Cache - Unit Tests', () => {
   }
   let chance = new Chance();
   let cache = new CacheTesting();
-  const fixtureKey = chance.word();
-  const fixtureValue = chance.word();
-  const fixtureItems = [
-    { key: chance.word(), value: chance.word() },
-    { key: chance.word(), value: chance.word() },
-    { key: chance.word(), value: chance.word() }
-  ];
+  const [ fixtureKey, fixtureValue ] = createCacheItem();
+  const fixtureItems = createCacheItems();
+  const expiration = chance.millisecond();
 
   it('should insert one cache item without expiration', () => {
     
@@ -40,7 +37,6 @@ describe('Cache - Unit Tests', () => {
     spy.mockImplementation(async () => {
       return null
     })
-    const expiration = 1000
     
     cache.insertOne(fixtureKey, fixtureValue, expiration);
     const data = cache.getData()
@@ -132,8 +128,7 @@ describe('Cache - Unit Tests', () => {
   })
 
   it('Should throw a invalid expiration error expiration if expiration is negative', () => {
-    const expiration = -chance.millisecond();
-    const exec = () => cache.insertOne(fixtureKey, fixtureValue, expiration);
+    const exec = () => cache.insertOne(fixtureKey, fixtureValue, -expiration);
     expect(exec).toThrowError(InvalidExpirationError);
   })
 })
