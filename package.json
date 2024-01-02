@@ -6,7 +6,8 @@
   "scripts": {
     "test": "vitest --config ./vitest.config.ts",
     "coverage": "vitest run --config ./vitest.config.ts --coverage",
-    "dev": "tsc && node ./dist/example.js"
+    "dev": "tsc && node ./dist/example.js",
+    "prettier": "prettier . --write"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "@types/node": "^20.10.4",
     "@vitest/coverage-v8": "^1.0.4",
     "chance": "^1.1.11",
+    "prettier": "3.1.1",
     "typescript": "^5.3.3",
     "vitest": "^1.1.0"
   }
