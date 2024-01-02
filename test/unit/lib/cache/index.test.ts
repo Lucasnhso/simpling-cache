@@ -18,7 +18,7 @@ describe('Cache - Unit Tests', () => {
       this.data = value;
     }
   }
-  let chance = new Chance();
+  const chance = new Chance();
   let cache = new CacheTesting();
   const [fixtureKey, fixtureValue] = createCacheItem();
   const fixtureItems = createCacheItems();
@@ -106,7 +106,7 @@ describe('Cache - Unit Tests', () => {
   it('should set a expiration to a item', () => {
     const spy = vi.spyOn(scheduleUtil, 'createSchedule');
     vi.mock('../../../../lib/utils/schedule.ts', () => {
-      async function createSchedule(delay: number, execution: any) {
+      async function createSchedule() {
         return null;
       }
       return {

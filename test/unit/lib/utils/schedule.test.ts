@@ -9,7 +9,6 @@ describe('Schedule - Unit Tests', () => {
     };
     vi.useFakeTimers();
     const spySchedule = vi.spyOn(schedule, 'createSchedule');
-    const spyTask = vi.spyOn(fakeModule, 'task');
 
     schedule.createSchedule(delay, fakeModule.task);
     await vi.runAllTimersAsync();
