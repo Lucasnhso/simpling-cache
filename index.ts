@@ -1,3 +1,3 @@
 import Cache from './lib/cache';
 
-export default Cache
+export default Cache;

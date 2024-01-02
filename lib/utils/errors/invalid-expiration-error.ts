@@ -1,6 +1,6 @@
 export class InvalidExpirationError extends Error {
-  constructor () {
+  constructor() {
     super("Expiration can't be negative");
-    this.name = "InvalidExpirationError";
+    this.name = 'InvalidExpirationError';
   }
-};
+}

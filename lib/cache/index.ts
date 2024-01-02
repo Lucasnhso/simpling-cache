@@ -1,9 +1,9 @@
-import { InvalidExpirationError } from "../utils/errors/invalid-expiration-error.js";
-import { InvalidKeyError } from "../utils/errors/invalid-key-error.js";
-import { createSchedule } from "../utils/schedule.js";
+import { InvalidExpirationError } from '../utils/errors/invalid-expiration-error.js';
+import { InvalidKeyError } from '../utils/errors/invalid-key-error.js';
+import { createSchedule } from '../utils/schedule.js';
 
 export interface Data {
-  [key: string]: any
+  [key: string]: any;
 }
 
 export default class Cache {
@@ -24,12 +24,12 @@ export default class Cache {
       throw new InvalidKeyError();
     }
     this.data[key] = value;
-    if(value && expiresIn) {
+    if (value && expiresIn) {
       this.setExpiration(key, expiresIn);
     }
   }
   insertMany(items: any[]) {
-    for(const { key, value, expiresIn } of items) {
+    for (const { key, value, expiresIn } of items) {
       this.insertOne(key, value, expiresIn);
     }
   }
@@ -40,9 +40,9 @@ export default class Cache {
     delete this.data[key];
   }
   setExpiration(key: string, expiresIn: number) {
-    if (expiresIn < 0){
+    if (expiresIn < 0) {
       throw new InvalidExpirationError();
-    } 
+    }
     createSchedule(expiresIn, () => this.expire(key));
   }
 }
