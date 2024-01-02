@@ -29,5 +29,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: eslint lib test index.ts --ext .ts
-    - run: prettier . --check
+    - run: npx eslint lib test index.ts --ext .ts
+    - run: npx prettier . --check
