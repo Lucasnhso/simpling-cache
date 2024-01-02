@@ -9,11 +9,12 @@ describe('Schedule - Unit Tests', () => {
     };
     vi.useFakeTimers();
     const spySchedule = vi.spyOn(schedule, 'createSchedule');
+    const spyModule = vi.spyOn(fakeModule, 'task');
 
     schedule.createSchedule(delay, fakeModule.task);
     await vi.runAllTimersAsync();
 
     expect(spySchedule).toHaveBeenCalledOnce();
-    expect(fakeModule.task).toHaveBeenCalledOnce();
+    expect(spyModule).toHaveBeenCalledOnce();
   });
 });
