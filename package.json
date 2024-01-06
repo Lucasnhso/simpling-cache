@@ -1,12 +1,13 @@
 {
   "name": "simpling-cache",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
   "scripts": {
+    "build": "tsc",
     "test": "vitest --config ./vitest.config.ts",
     "coverage": "vitest run --config ./vitest.config.ts --coverage",
-    "dev": "tsc && node ./dist/example.js",
     "prettier": "prettier . --write"
   },
   "author": "",
