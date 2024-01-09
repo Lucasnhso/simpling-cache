@@ -1,4 +1,4 @@
-import Cache from './';
+import Cache from '../';
 
 const cache = new Cache();
 
